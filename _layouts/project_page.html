@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="">
-  <meta name="keywords" content="">
+        content="PlugTrack: Multi-Perceptive Motion Analysis for Adaptive Fusion in Multi-Object Tracking">
+  <meta name="keywords" content="Multi-Object Tracking, MOT, motion prediction, Kalman filter, adaptive fusion, PlugTrack">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }}</title>
+
+  <title>{{ page.title | default: "PlugTrack: Multi-Perceptive Motion Analysis for Adaptive Fusion in Multi-Object Tracking" }}</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -25,12 +26,10 @@
       tex: {
         inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
         displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
-        processEscapes: true, 
+        processEscapes: true,
         tags: 'all',
       },
-      svg: {
-        fontCache: 'global'
-      }
+      svg: { fontCache: 'global' }
     };
   </script>
   <script
@@ -38,47 +37,53 @@
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
   </script>
 </head>
-<body>
 
+<body>
 
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">{{ page.title }}</h1>
+
+          <h1 class="title is-1 publication-title">
+            {{ page.title | default: "PlugTrack: Multi-Perceptive Motion Analysis for Adaptive Fusion in Multi-Object Tracking" }}
+          </h1>
+
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://heokunho.github.io/">KunHo Heo</a><sup>*</sup>,</span>
-            <span class="author-block">
-              <a href="https://github.com/kimh060612">GiHyun Kim</a><sup>*</sup>,</span>
-            <span class="author-block">
-              <a href="https://jagged-shoemaker-d6c.notion.site/SuYeon-Kim-262048ede99680799d03f7b32004d93d">SuYeon Kim</a><sup></sup>,
+              {% if page.author1_url %}<a href="{{ page.author1_url }}">Seungjae Kim</a>{% else %}Seungjae Kim{% endif %},
             </span>
             <span class="author-block">
-              <a href="https://myeongahcho.netlify.app/">MyeongAh Cho</a><sup>†</sup>
+              {% if page.author2_url %}<a href="{{ page.author2_url }}">SeungJoon Lee</a>{% else %}SeungJoon Lee{% endif %},
+            </span>
+            <span class="author-block">
+              {% if page.author3_url %}<a href="{{ page.author3_url }}">MyeongAh Cho</a>{% else %}MyeongAh Cho{% endif %}<sup>*</sup>
             </span>
           </div>
 
-          {% if page.affiliations %}
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              {{ page.affiliations }}
+              {{ page.affiliations | default: "Department of Software Convergence, Kyung Hee University" }}
             </span>
           </div>
-          {% endif %}
-          
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block">
+              {{ page.emails | default: "{tmdwo8814, diplomat3334, maycho}@khu.ac.kr" }}
+            </span>
+          </div>
+
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <sup>*</sup>Equal Contribution
-            </span>
-            <span class="author-block" style="margin-left: 15px;">
-              <sup>†</sup>Corresponding Author
+              <sup>*</sup>Corresponding Author
             </span>
           </div>
 
           <div style="color: red; padding: 10px 0;">
-            <h2 style="margin: 0; font-weight: normal; font-size: 1.5em;">NeurIPS 2025</h2>
+            <h2 style="margin: 0; font-weight: normal; font-size: 1.5em;">
+              {{ page.venue | default: "AAAI 2026" }}
+            </h2>
           </div>
 
           <div class="column has-text-centered">
@@ -87,7 +92,7 @@
               {% if page.arxiv %}
               <span class="link-block">
                 <a href="{{ page.arxiv }}"
-                  class="external-link button is-normal is-rounded is-dark">
+                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="fas fa-book-open"></i>
                   </span>
@@ -100,9 +105,9 @@
               {% if page.paper %}
               <span class="link-block">
                 <a href="{{ page.paper }}"
-                  class="external-link button is-normal is-rounded is-dark">
+                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+                    <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
                 </a>
@@ -113,9 +118,9 @@
               {% if page.code %}
               <span class="link-block">
                 <a href="{{ page.code }}"
-                  class="external-link button is-normal is-rounded is-dark">
+                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fab fa-github"></i>
+                    <i class="fab fa-github"></i>
                   </span>
                   <span>Code</span>
                 </a>
@@ -123,6 +128,7 @@
               {% endif %}
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -130,13 +136,11 @@
 </section>
 
 <section class="section">
-<div class="container is-max-desktop">
-
-<div class="content">
-  {{ content }}
-</div>
-
-</div>
+  <div class="container is-max-desktop">
+    <div class="content">
+      {{ content }}
+    </div>
+  </div>
 </section>
 
 <footer class="footer">
@@ -145,7 +149,8 @@
       <div class="column is-8">
         <div class="content">
           <p>
-            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> and <a href="https://github.com/shunzh/project_website">the Jekyll fork</a>.
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> and
+            <a href="https://github.com/shunzh/project_website">the Jekyll fork</a>.
           </p>
         </div>
       </div>
