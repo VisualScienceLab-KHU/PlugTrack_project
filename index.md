@@ -46,17 +46,12 @@ Multi-object tracking (MOT) predominantly follows the tracking-by-detection para
 
 ## Core Contributions
 1. **Key insight:** Even in non-linear datasets, **Kalman filter can outperform data-driven predictors in a substantial fraction of cases** (e.g., up to 34%), motivating adaptive fusion rather than replacement.
-
-![analysis](/static/image/figure2.png)
-이것은 테스트입니다. figure2의 막대 그래프에 대한 설명과 insight가 들어가야합니다.
-
 2. **PlugTrack framework:** A **plug-and-play** mechanism that **adaptively fuses** Kalman filter and any data-driven motion predictor **without modifying** the base predictor.
 3. **Multi-perceptive motion understanding:** Contextual Motion Encoder (CME) that analyzes motion via:
    - Motion Pattern Module (MPM),
    - Prediction Discrepancy Module (PDM),
    - Uncertainty Quantification Module (UQM).
 4. **Stable training:** Monte Carlo Alpha Search (MCAS) to generate pseudo-GT blending factors and prevent bias collapse.
-5. **Strong results + efficiency:** Consistent gains on MOT17/MOT20 and **SOTA on DanceTrack**, while maintaining real-time capability with minimal overhead.
 
 <br>
 
@@ -68,23 +63,15 @@ Multi-object tracking (MOT) predominantly follows the tracking-by-detection para
 
 <br>
 
-## Results
-
-![MOT17_MOT20_Table](/static/image/table1.png)
-
-- **MOT17/MOT20:** PlugTrack improves base predictors (e.g., TrackSSM / DiffMOT) and can reach strong HOTA/AssA scores.
-
-![DanceTrack_Table](/static/image/table2.png)
-
-- **DanceTrack:** PlugTrack(DiffMOT) achieves **SOTA HOTA** and improves association/identity metrics via adaptive fusion.
 
 <br>
 
 ## Citation
-```bibtex
+```
 @article{kim2025plugtrack,
-  title   = {PlugTrack: Multi-Perceptive Motion Analysis for Adaptive Fusion in Multi-Object Tracking},
-  author  = {Kim, Seungjae and Lee, SeungJoon and Cho, MyeongAh},
-  journal = {arXiv preprint arXiv:2511.13105},
-  year    = {2025}
+  title={PlugTrack: Multi-Perceptive Motion Analysis for Adaptive Fusion in Multi-Object Tracking},
+  author={Kim, Seungjae and Lee, SeungJoon and Cho, MyeongAh},
+  journal={arXiv preprint arXiv:2511.13105},
+  year={2025}
 }
+```
