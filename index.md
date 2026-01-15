@@ -43,6 +43,16 @@ Multi-object tracking (MOT) predominantly follows the tracking-by-detection para
 </div>
 
 ---
+## The Coexistence of Motion Patterns: A New Perspective on Real-World Tracking
+
+![Motion Predictor Performance](/static/image/figure2.png)
+
+A critical yet overlooked phenomenon in multi-object tracking: **even in non-linear motion domains, linear patterns dominate a substantial fraction of scenarios.** Our empirical analysis on DanceTrack—a dataset explicitly designed for complex non-linear motion—reveals that the Kalman filter achieves superior predictions in 34% of all tracklets (1,700 out of 5,000), outperforming specialized data-driven predictors like DiffMOT and TrackSSM.
+
+This finding challenges the prevailing assumption that motion domains can be cleanly separated into "linear" or "non-linear" categories. Real-world tracking scenarios are inherently **heterogeneous**, containing a natural mixture of both motion patterns regardless of dataset characteristics. On MOT17, where linear motion predominates, the Kalman filter excels in 60.3% of cases—yet data-driven predictors still capture the remaining 40% more effectively. Conversely, on DanceTrack's dance sequences with frequent direction changes, data-driven methods dominate 66% of tracklets, but the Kalman filter surprisingly outperforms them in the remaining third.
+
+**This coexistence of motion patterns within single sequences demands a paradigm shift**: rather than selecting one predictor over another, we need adaptive fusion that dynamically leverages each predictor's strengths based on instantaneous motion context. PlugTrack is built on this fundamental insight—intelligently blending classical Kalman filtering with modern data-driven approaches to handle the full spectrum of real-world motion dynamics.
+---
 
 ## Core Contributions
 1. **Key insight:** Even in non-linear datasets, **Kalman filter can outperform data-driven predictors in a substantial fraction of cases** (e.g., up to 34%), motivating adaptive fusion rather than replacement.
