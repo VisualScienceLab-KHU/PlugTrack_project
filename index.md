@@ -19,7 +19,9 @@ keywords: "Multi-Object Tracking, MOT, Kalman Filter, Motion Prediction, Adaptiv
 # Author list (layout이 동적으로 렌더링)
 authors:
   - name: "Seungjae Kim"
+    url: "https://tmdwo8814.github.io/"
   - name: "SeungJoon Lee"
+    url: "https://my.surfit.io/w/1720083748"
   - name: "MyeongAh Cho"
     url: "https://myeongahcho.netlify.app/"
     sup: "*"
@@ -28,7 +30,7 @@ corresponding_text: "Corresponding Author"
 ---
 
 ![Teaser](/static/image/figure1.png)
-*Qualitative comparison of motion prediction on DanceTrack (frames 508–511). PlugTrack adaptively fuses Kalman filter and data-driven predictions to better handle both linear and non-linear motions, achieving up to +10.6 IoU gains.*
+Qualitative comparison of motion prediction on DanceTrack (frames 508–511). PlugTrack adaptively fuses Kalman filter and data-driven predictions to better handle both linear and non-linear motions, achieving up to +10.6 IoU gains.
 
 <!-- Using HTML to center the abstract -->
 <div class="columns is-centered has-text-centered">
