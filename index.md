@@ -29,7 +29,7 @@ corresponding_mark: "*"
 corresponding_text: "Corresponding Author"
 ---
 
-![Teaser](/static/image/figure1.png)
+![Figure1](/static/image/figure1.png)
 Qualitative comparison of motion prediction on DanceTrack (frames 508–511). PlugTrack adaptively fuses Kalman filter and data-driven predictions to better handle both linear and non-linear motions, achieving up to +10.6 IoU gains.
 
 <!-- Using HTML to center the abstract -->
