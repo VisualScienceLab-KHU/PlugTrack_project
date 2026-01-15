@@ -1,24 +1,30 @@
+---
+
+## 2) `_layouts/project_page.html` (PlugTrack/일반 논문 공용으로 개선)
+
+- 저자/소속/이메일/venue를 **front matter로부터 동적 렌더링**
+- 기존처럼 `arxiv/paper/code` 버튼 유지
+- `equal contribution`은 필요 없어서 **옵션화** (없으면 안 뜸)
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="PlugTrack: Multi-Perceptive Motion Analysis for Adaptive Fusion in Multi-Object Tracking">
-  <meta name="keywords" content="Multi-Object Tracking, MOT, motion prediction, Kalman filter, adaptive fusion, PlugTrack">
+  <meta name="description" content="{{ page.description | default: '' }}">
+  <meta name="keywords" content="{{ page.keywords | default: '' }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
 
-  <title>{{ page.title | default: "PlugTrack: Multi-Perceptive Motion Analysis for Adaptive Fusion in Multi-Object Tracking" }}</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="{{ '/static/css/bulma.min.css' | relative_url }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="{{ '/static/css/index.css' | relative_url }}">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script defer src="{{ '/static/js/fontawesome.all.min.js' | relative_url }}"></script>
+  <script src="{{ '/static/js/index.js' | relative_url }}"></script>
 
   <!-- MathJax -->
   <script>
@@ -46,86 +52,102 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
 
-          <h1 class="title is-1 publication-title">
-            {{ page.title | default: "PlugTrack: Multi-Perceptive Motion Analysis for Adaptive Fusion in Multi-Object Tracking" }}
-          </h1>
+          <h1 class="title is-1 publication-title">{{ page.title }}</h1>
 
+          <!-- Authors -->
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              {% if page.author1_url %}<a href="{{ page.author1_url }}">Seungjae Kim</a>{% else %}Seungjae Kim{% endif %},
-            </span>
-            <span class="author-block">
-              {% if page.author2_url %}<a href="{{ page.author2_url }}">SeungJoon Lee</a>{% else %}SeungJoon Lee{% endif %},
-            </span>
-            <span class="author-block">
-              {% if page.author3_url %}<a href="{{ page.author3_url }}">MyeongAh Cho</a>{% else %}MyeongAh Cho{% endif %}<sup>*</sup>
-            </span>
+            {% if page.authors %}
+              {% for a in page.authors %}
+                <span class="author-block">
+                  {% if a.url %}
+                    <a href="{{ a.url }}">{{ a.name }}</a>
+                  {% else %}
+                    {{ a.name }}
+                  {% endif %}
+                  {% if a.sup %}<sup>{{ a.sup }}</sup>{% endif %}
+                  {% unless forloop.last %},{% endunless %}
+                </span>
+              {% endfor %}
+            {% else %}
+              <!-- fallback (원하면 지워도 됨) -->
+              <span class="author-block">Author list is not set in front matter.</span>
+            {% endif %}
           </div>
 
+          <!-- Affiliations -->
+          {% if page.affiliations %}
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              {{ page.affiliations | default: "Department of Software Convergence, Kyung Hee University" }}
+              {{ page.affiliations }}
             </span>
           </div>
+          {% endif %}
 
+          <!-- Emails -->
+          {% if page.emails %}
           <div class="is-size-6 publication-authors">
             <span class="author-block">
-              {{ page.emails | default: "{tmdwo8814, diplomat3334, maycho}@khu.ac.kr" }}
+              {{ page.emails }}
             </span>
           </div>
+          {% endif %}
 
+          <!-- Footnotes (optional) -->
+          {% if page.equal_contrib or page.corresponding_text %}
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <sup>*</sup>Corresponding Author
-            </span>
+            {% if page.equal_contrib %}
+              <span class="author-block">
+                <sup>{{ page.equal_mark | default: "*" }}</sup>{{ page.equal_contrib }}
+              </span>
+            {% endif %}
+            {% if page.corresponding_text %}
+              <span class="author-block" style="margin-left: 15px;">
+                <sup>{{ page.corresponding_mark | default: "†" }}</sup>{{ page.corresponding_text }}
+              </span>
+            {% endif %}
           </div>
+          {% endif %}
 
+          <!-- Venue -->
+          {% if page.venue %}
           <div style="color: red; padding: 10px 0;">
             <h2 style="margin: 0; font-weight: normal; font-size: 1.5em;">
-              {{ page.venue | default: "AAAI 2026" }}
+              {{ page.venue }}
             </h2>
           </div>
+          {% endif %}
 
+          <!-- Links -->
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- ArXiv -->
+
               {% if page.arxiv %}
               <span class="link-block">
-                <a href="{{ page.arxiv }}"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-book-open"></i>
-                  </span>
+                <a href="{{ page.arxiv }}" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-book-open"></i></span>
                   <span>ArXiv</span>
                 </a>
               </span>
               {% endif %}
 
-              <!-- Paper -->
               {% if page.paper %}
               <span class="link-block">
-                <a href="{{ page.paper }}"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
+                <a href="{{ page.paper }}" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
               </span>
               {% endif %}
 
-              <!-- Code -->
               {% if page.code %}
               <span class="link-block">
-                <a href="{{ page.code }}"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-github"></i>
-                  </span>
+                <a href="{{ page.code }}" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
                 </a>
               </span>
               {% endif %}
+
             </div>
           </div>
 
