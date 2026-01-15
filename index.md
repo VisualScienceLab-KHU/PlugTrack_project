@@ -29,7 +29,7 @@ corresponding_mark: "*"
 corresponding_text: "Corresponding Author"
 ---
 
-![Figure1](/static/image/figure1.png)
+![Teaser](/static/image/figure1.png)
 Qualitative comparison of motion prediction on DanceTrack (frames 508–511). PlugTrack adaptively fuses Kalman filter and data-driven predictions to better handle both linear and non-linear motions, achieving up to +10.6 IoU gains.
 
 <!-- Using HTML to center the abstract -->
@@ -46,6 +46,10 @@ Multi-object tracking (MOT) predominantly follows the tracking-by-detection para
 
 ## Core Contributions
 1. **Key insight:** Even in non-linear datasets, **Kalman filter can outperform data-driven predictors in a substantial fraction of cases** (e.g., up to 34%), motivating adaptive fusion rather than replacement.
+
+![analysis](/static/image/figure2.png)
+이것은 테스트입니다. figure2의 막대 그래프에 대한 설명과 insight가 들어가야합니다.
+
 2. **PlugTrack framework:** A **plug-and-play** mechanism that **adaptively fuses** Kalman filter and any data-driven motion predictor **without modifying** the base predictor.
 3. **Multi-perceptive motion understanding:** Contextual Motion Encoder (CME) that analyzes motion via:
    - Motion Pattern Module (MPM),
