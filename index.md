@@ -52,7 +52,10 @@ Multi-object tracking (MOT) predominantly follows the tracking-by-detection para
 
 ---
 
-## The Coexistence of Motion Patterns: A New Perspective on Real-World Tracking
+<h2 align="center">
+The Coexistence of Motion Patterns:<br>
+A New Perspective on Real-World Tracking
+</h2>
 
 <div class="columns is-centered">
   <div class="column is-four-fifths">
