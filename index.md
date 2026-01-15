@@ -52,6 +52,7 @@ A critical yet overlooked phenomenon in multi-object tracking: **even in non-lin
 This finding challenges the prevailing assumption that motion domains can be cleanly separated into "linear" or "non-linear" categories. Real-world tracking scenarios are inherently **heterogeneous**, containing a natural mixture of both motion patterns regardless of dataset characteristics. On MOT17, where linear motion predominates, the Kalman filter excels in 60.3% of cases—yet data-driven predictors still capture the remaining 40% more effectively. Conversely, on DanceTrack's dance sequences with frequent direction changes, data-driven methods dominate 66% of tracklets, but the Kalman filter surprisingly outperforms them in the remaining third.
 
 **This coexistence of motion patterns within single sequences demands a paradigm shift**: rather than selecting one predictor over another, we need adaptive fusion that dynamically leverages each predictor's strengths based on instantaneous motion context. PlugTrack is built on this fundamental insight—intelligently blending classical Kalman filtering with modern data-driven approaches to handle the full spectrum of real-world motion dynamics.
+
 ---
 
 ## Core Contributions
